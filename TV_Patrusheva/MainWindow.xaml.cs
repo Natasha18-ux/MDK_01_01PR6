@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TV_Patrusheva.Classes;
 
 namespace TV_Patrusheva
 {
@@ -20,19 +21,22 @@ namespace TV_Patrusheva
     /// </summary>
     public partial class MainWindow : Window
     {
+        Classes.TV TV = new TV();
         public MainWindow()
         {
             InitializeComponent();
+            VideoPlayer.Source = new Uri(TV.AllChanells[0].Scr);
+            VideoPlayer.Play();
         }
 
         private void BackChannel(object sender, RoutedEventArgs e)
         {
-
+            TV.BackChanell(VideoPlayer, NameChannel);
         }
 
         private void NextChannel(object sender, RoutedEventArgs e)
         {
-
+            TV.NextChanell(VideoPlayer, NameChannel);
         }
     }
 }
