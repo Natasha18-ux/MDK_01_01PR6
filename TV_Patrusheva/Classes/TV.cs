@@ -37,17 +37,17 @@ namespace TV_Patrusheva.Classes
             AllChanells.Add(new Chanell()
             {
                 Name = "Канал1",
-                Scr = ""
+                Scr = "E:\\МДК 01.01\\chanel_1_1serials.mp4"
             });
             AllChanells.Add(new Chanell()
             {
                 Name = "Канал2",
-                Scr = ""
+                Scr = "E:\\МДК 01.01\\chanel_2_1music.mp4"
             });
             AllChanells.Add(new Chanell()
             {
                 Name = "Канал3",
-                Scr = ""
+                Scr = "E:\\МДК 01.01\\chanel_3_1show.mp4"
             });
         }
 
