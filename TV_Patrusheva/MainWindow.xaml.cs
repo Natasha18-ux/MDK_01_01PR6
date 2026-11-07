@@ -38,5 +38,20 @@ namespace TV_Patrusheva
         {
             TV.NextChanell(VideoPlayer, NameChannel);
         }
+
+        private void GetLouder(object sender, RoutedEventArgs e)
+        {
+            
+            TV.DownSound();
+            VideoPlayer.Volume = TV.ActiveVolume / 100.0;
+
+
+        }
+
+        private void GetQuieter(object sender, RoutedEventArgs e)
+        {
+            TV.UpSound();
+            VideoPlayer.Volume = TV.ActiveVolume / 100.0;
+        }
     }
 }

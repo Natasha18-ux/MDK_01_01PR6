@@ -45,13 +45,14 @@
                 Background="White">
             </Button>
             <Button
-                Content="Гима"
+                Content="Тише"
                 HorizontalAlignment="Right"
                 Margin="0,0,115,10"
                 VerticalAlignment="Bottom"
                 Width="100"
                 Height="25"
-                Background="White">
+                Background="White"
+                Click="GetLouder">
             </Button>
             <Button
                 Content="Громче"
@@ -60,7 +61,8 @@
                 VerticalAlignment="Bottom"
                 Width="100"
                 Height="25"
-                Background="White">
+                Background="White"
+                Click="GetQuieter">
             </Button>
         </Grid>
     </Grid>

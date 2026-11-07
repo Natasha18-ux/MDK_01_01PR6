@@ -13,6 +13,24 @@ namespace TV_Patrusheva.Classes
         private int activeChanell;
         private int activeVolume;
 
+
+        public int ActiveVolume
+        {
+            get
+            {
+                return activeVolume;
+            }
+            set
+            {
+                if (value > 100) 
+                    value = 100;
+                if (value < 0) 
+                    value = 0;
+                activeVolume = value;
+
+            }
+        }
+
         public int ActiveChanell
         {
             get { 
@@ -88,5 +106,14 @@ namespace TV_Patrusheva.Classes
             SwapChanell(mediaElement, nameChannel);
         }
 
+        public void UpSound()
+        {
+            ActiveVolume = ActiveVolume + 5;
+        }
+
+        public void DownSound() 
+        { 
+            ActiveVolume = ActiveVolume - 5; 
+        }
     }
 }
