@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
@@ -67,6 +68,16 @@ namespace TV_Patrusheva.Classes
                 Name = "Канал3",
                 Scr = "E:\\МДК 01.01\\chanel_3_1show.mp4"
             });
+            AllChanells.Add(new Chanell()
+            {
+                Name = "Канал4",
+                Scr = "E:\\МДК 01.01\\chanel_2_2music.mp4"
+            });
+            AllChanells.Add(new Chanell()
+            {
+                Name = "Канал5",
+                Scr = "E:\\МДК 01.01\\chanel_3_2show.mp4"
+            });
         }
 
         public void SwapChanell(MediaElement mediaElement, Label nameChannel)
@@ -92,6 +103,18 @@ namespace TV_Patrusheva.Classes
 
             mediaElement.BeginAnimation(MediaElement.OpacityProperty, startAnimation);
             nameChannel.Content = AllChanells[ActiveChanell].Name;
+        }
+
+        public void SerchChanel(int chanelNumber, MediaElement mediaElement, Label nameChannel)
+        {
+            if (chanelNumber <= AllChanells.Count - 1)
+            {
+                activeChanell = chanelNumber;
+                SwapChanell(mediaElement, nameChannel);
+            }
+            else
+                MessageBox.Show("Нет такого канала");
+            
         }
 
         public void NextChanell(MediaElement mediaElement, Label nameChannel)

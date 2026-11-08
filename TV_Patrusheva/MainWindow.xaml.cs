@@ -53,5 +53,20 @@ namespace TV_Patrusheva
             TV.UpSound();
             VideoPlayer.Volume = TV.ActiveVolume / 100.0;
         }
+
+        private void Serch(object sender, RoutedEventArgs e)
+        {
+            bool isNumber = int.TryParse(TextBoxChannelNumber.Text, out int channelNumber);
+
+            if (isNumber)
+            {
+                int index = channelNumber - 1;
+                TV.SerchChanel(index, VideoPlayer, NameChannel);
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, введите число!");
+            }
+        }
     }
 }

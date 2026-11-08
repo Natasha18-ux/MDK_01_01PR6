@@ -64,6 +64,8 @@
                 Background="White"
                 Click="GetQuieter">
             </Button>
+            <TextBox x:Name="TextBoxChannelNumber" Width="50" Height="30"/>
+            <Button Click="Serch" Content="Перейти" Margin="436,10,303,10" Background="White"/>
         </Grid>
     </Grid>
 </Window>
