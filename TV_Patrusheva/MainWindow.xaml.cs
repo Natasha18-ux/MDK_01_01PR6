@@ -25,7 +25,7 @@ namespace TV_Patrusheva
         public MainWindow()
         {
             InitializeComponent();
-            VideoPlayer.Source = new Uri(TV.AllChanells[0].Scr);
+            TV.SwapChanell(VideoPlayer, NameChannel);
             VideoPlayer.Play();
         }
 
@@ -67,6 +67,16 @@ namespace TV_Patrusheva
             {
                 MessageBox.Show("Пожалуйста, введите число!");
             }
+        }
+
+        private void doPeredacha(object sender, RoutedEventArgs e)
+        {
+            TV.BackProgram(VideoPlayer, NameChannel);
+        }
+
+        private void afterPeredacha(object sender, RoutedEventArgs e)
+        {
+            TV.NextProgram(VideoPlayer, NameChannel);
         }
     }
 }

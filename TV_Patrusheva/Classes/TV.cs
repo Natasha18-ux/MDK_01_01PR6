@@ -51,35 +51,42 @@ namespace TV_Patrusheva.Classes
 
         public List<Chanell> AllChanells = new List<Chanell>();
 
-        public TV()
+        // Репазиторий каналов и их передач
+        public TV() 
         {
             AllChanells.Add(new Chanell()
             {
-                Name = "Канал1",
-                Scr = "E:\\МДК 01.01\\chanel_1_1serials.mp4"
+                Name = "Музыка года",
+                peredacha = new List<string>
+                {
+                    "G:\\МДК 01.01\\chanel_2_1music.mp4",
+                    "G:\\МДК 01.01\\chanel_2_2music.mp4",
+                }
             });
             AllChanells.Add(new Chanell()
             {
-                Name = "Канал2",
-                Scr = "E:\\МДК 01.01\\chanel_2_1music.mp4"
+                Name = "ТВ3",
+                peredacha = new List<string>
+                {
+                    "G:\\МДК 01.01\\chanel_1_1serials.mp4",
+                    "G:\\МДК 01.01\\chanel_1_2serials.mp4"
+                }
             });
             AllChanells.Add(new Chanell()
             {
-                Name = "Канал3",
-                Scr = "E:\\МДК 01.01\\chanel_3_1show.mp4"
+                Name = "Пятница",
+                peredacha = new List<string>
+                {
+                    "G:\\МДК 01.01\\chanel_3_1show.mp4",
+                    "G:\\МДК 01.01\\chanel_3_2show.mp4",
+                    "G:\\МДК 01.01\\chanel_3_3show.mp4"
+                }
             });
-            AllChanells.Add(new Chanell()
-            {
-                Name = "Канал4",
-                Scr = "E:\\МДК 01.01\\chanel_2_2music.mp4"
-            });
-            AllChanells.Add(new Chanell()
-            {
-                Name = "Канал5",
-                Scr = "E:\\МДК 01.01\\chanel_3_2show.mp4"
-            });
+            
         }
 
+
+        // метод смены каналов
         public void SwapChanell(MediaElement mediaElement, Label nameChannel)
         {
             DoubleAnimation startAnimation = new DoubleAnimation()
@@ -90,7 +97,10 @@ namespace TV_Patrusheva.Classes
             };
             startAnimation.Completed += delegate
             {
-                mediaElement.Source = new Uri(AllChanells[ActiveChanell].Scr);
+                int videoIndex = AllChanells[ActiveChanell].memoryPeredacha; // берем из списка всех каналов активный и его передачу
+                string videoPath = AllChanells[ActiveChanell].peredacha[videoIndex]; // записываем путь из репазитория каналов с указанием индекса передачи 
+
+                mediaElement.Source = new Uri(videoPath);
                 mediaElement.Play();
                 DoubleAnimation endAnimation = new DoubleAnimation()
                 {
@@ -105,6 +115,8 @@ namespace TV_Patrusheva.Classes
             nameChannel.Content = AllChanells[ActiveChanell].Name;
         }
 
+
+        // поиск канала по номеру
         public void SerchChanel(int chanelNumber, MediaElement mediaElement, Label nameChannel)
         {
             if (chanelNumber <= AllChanells.Count - 1)
@@ -116,7 +128,28 @@ namespace TV_Patrusheva.Classes
                 MessageBox.Show("Нет такого канала");
             
         }
+        
+        // Переключение программ внутри канала
+        public void NextProgram(MediaElement mediaElement, Label nameChannel)
+        {
+            var channel = AllChanells[ActiveChanell]; // Берем активный канал
+            channel.memoryPeredacha--;
+            if (channel.memoryPeredacha < 0)
+                channel.memoryPeredacha = channel.peredacha.Count - 1;
+            SwapChanell(mediaElement, nameChannel);
+        }
 
+        public void BackProgram(MediaElement mediaElement, Label nameChannel)
+        {
+            var channel = AllChanells[ActiveChanell]; 
+            channel.memoryPeredacha++;
+            if (channel.memoryPeredacha >= channel.peredacha.Count)
+                channel.memoryPeredacha = 0;
+            SwapChanell(mediaElement, nameChannel);
+        }
+
+
+        // переключение самих каналов
         public void NextChanell(MediaElement mediaElement, Label nameChannel)
         {
             ActiveChanell++;
@@ -129,6 +162,8 @@ namespace TV_Patrusheva.Classes
             SwapChanell(mediaElement, nameChannel);
         }
 
+
+        // реализация смены звука
         public void UpSound()
         {
             ActiveVolume = ActiveVolume + 5;

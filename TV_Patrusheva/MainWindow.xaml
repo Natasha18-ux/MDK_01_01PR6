@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TV_Patrusheva"
         mc:Ignorable="d"
-        Title="Телевизор" Height="450" Width="800" MinHeight="450" MinWidth="800" FontFamily="Arial Narrow">
+        Title="Телевизор" Height="475" Width="800" MinHeight="475" MinWidth="800" FontFamily="Arial Narrow">
     <Grid Background="#FF383838">
         <Label 
             x:Name="NameChannel"
@@ -15,35 +15,39 @@
             VerticalAlignment="Top"
             Foreground="White">
         </Label>
-
         <MediaElement
             x:Name="VideoPlayer"
             LoadedBehavior="Manual"
             Volume="1"
             Stretch="UniformToFill"
-            Margin="20,41,19.6,50">
+            Margin="20,41,20,68">
         </MediaElement>
-        <Grid Margin="0,0,0,0" Height="50" VerticalAlignment="Bottom">
+        <Grid Margin="0,374,0,0" Height="60" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31*"/>
+                <RowDefinition Height="29*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="129*"/>
+            </Grid.ColumnDefinitions>
             <Button
                 Click="BackChannel"
                 Content="Назад"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Width="100"
-                Height="25"
-                Margin="10,0,0,10"
-                Background="White">
-            </Button>
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="128"
+                Height="21"
+                Background="White" Grid.Row="1"/>
             <Button
                 Click="NextChannel"
                 Content="Вперёд"
-                HorizontalAlignment="Left"
-                Margin="115,0,0,10"
-                VerticalAlignment="Bottom"
-                Width="100"
-                Height="25"
-                Background="White">
-            </Button>
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="122"
+                Height="21"
+                Background="White" Grid.Column="1" Grid.Row="1"/>
             <Button
                 Content="Тише"
                 HorizontalAlignment="Right"
@@ -52,7 +56,7 @@
                 Width="100"
                 Height="25"
                 Background="White"
-                Click="GetLouder">
+                Click="GetLouder" Grid.Column="2" Grid.RowSpan="2">
             </Button>
             <Button
                 Content="Громче"
@@ -62,10 +66,13 @@
                 Width="100"
                 Height="25"
                 Background="White"
-                Click="GetQuieter">
+                Click="GetQuieter" Grid.Column="2" Grid.RowSpan="2">
             </Button>
-            <TextBox x:Name="TextBoxChannelNumber" Width="50" Height="30"/>
-            <Button Click="Serch" Content="Перейти" Margin="436,10,303,10" Background="White"/>
+            <TextBox x:Name="TextBoxChannelNumber" Margin="102,12,364,8" Grid.Column="2" Grid.RowSpan="2"/>
+            <Button Click="Serch" Content="Перейти" Margin="157,12,297,8" Background="White" Grid.Column="2" Grid.RowSpan="2"/>
+
+            <Button Content="Предыдущая передача" Click="doPeredacha" Margin="10,5,10,5"/>
+            <Button Content="Следующая передача" Click="afterPeredacha" Margin="10,5,10,5" Grid.Column="1" />
         </Grid>
     </Grid>
 </Window>
